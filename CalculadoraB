@@ -1,0 +1,37 @@
+def main():
+    try:
+        while(True):
+            op = input("Digite la operacion que desea hacer: ")
+            sep = " "
+            op = op.split(sep)
+            if op[1] == "+":
+                print(int(op[0]) + int(op[2]))
+            if op[1] == "-":
+                print(int(op[0]) - int(op[2]))
+            if op[1] == "*":
+                print(int(op[0]) * int(op[2]))
+            if op[1] == "/":
+                print(int(op[0]) / int(op[2]))
+            if op == "terminar":
+                break
+
+    except ZeroDivisionError as e:
+        print("Dividió por 0, hay problemas")
+        main()
+    except IndexError:
+        print("No indico valores de buena manera")
+        main()
+    except NameError:
+        print("Digitó mal la operación")
+        main()
+    except KeyboardInterrupt:
+        print("Solo deberia parar cuando escriba 'terminar' ")
+        main()
+    except ValueError:
+        print("Mal digitación de la operación")
+        main()
+    except:
+        print("Error aun no definido")
+        main()
+
+main()
