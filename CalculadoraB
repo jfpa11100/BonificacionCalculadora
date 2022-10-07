@@ -1,3 +1,19 @@
+class miError1(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+class miError2(Exception):
+    pass
+
+class miError3(Exception):
+    pass
+
+class miError4(Exception):
+    pass
+
+class miError5(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
 def main():
     try:
         while(True):
@@ -6,32 +22,29 @@ def main():
             op = op.split(sep)
             if op[1] == "+":
                 print(int(op[0]) + int(op[2]))
-            if op[1] == "-":
+            elif op[1] == "-":
                 print(int(op[0]) - int(op[2]))
-            if op[1] == "*":
+            elif op[1] == "*":
                 print(int(op[0]) * int(op[2]))
-            if op[1] == "/":
+            elif op[1] == "/":
                 print(int(op[0]) / int(op[2]))
-            if op == "terminar":
+            elif op == "terminar":
                 break
+            elif op[1] == "**" or op[1] == "^":
+                raise miError5("No se conoce esa operación")
 
-    except ZeroDivisionError as e:
-        print("Dividió por 0, hay problemas")
-        main()
+    except ZeroDivisionError:
+        raise miError1("Paila esa divididida por 0")
     except IndexError:
-        print("No indico valores de buena manera")
-        main()
-    except NameError:
-        print("Digitó mal la operación")
-        main()
+        raise miError2("Falto un número por digitar")
     except KeyboardInterrupt:
-        print("Solo deberia parar cuando escriba 'terminar' ")
-        main()
+        raise miError3("Escriba 'terminar' preferiblemente ")
     except ValueError:
-        print("Mal digitación de la operación")
-        main()
+        raise miError4("Mal digitación de la operación")
+    except miError5 as e:
+        print(f"paila -> {e.msg}")
     except:
-        print("Error aun no definido")
+        ("Sucedio un error aun no definido")
         main()
 
 main()
