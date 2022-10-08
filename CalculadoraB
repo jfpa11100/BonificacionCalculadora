@@ -10,7 +10,7 @@ class Terminar(KeyboardInterrupt):
 class NoConvertInt(ValueError):
     pass
 
-class OperacionUnknown(Exception):
+class UnknownOperation(Exception):
     def __init__(self, msg):
         self.msg = msg
 
@@ -31,17 +31,17 @@ def main():
             elif op == "terminar":
                 break
             else:
-                raise OperacionUnknown("No se conoce esa operación")
+                raise UnknownOperation("No se conoce esa operación")
 
     except ZeroDivisionError:
         raise DivisionPor0("Paila esa divididida por 0")
     except IndexError:
-        raise MalIngresoNumeros("Falto número(s) por digitar")
+        raise MalIngresoNumeros("Faltaron número(s)")
     except KeyboardInterrupt:
         raise Terminar("Escriba 'terminar' preferiblemente para parar")
     except ValueError:
         raise NoConvertInt("No es un numero")
-    except OperacionUnknown as e:
+    except UnknownOperation as e:
         print(f"Paila -> {e.msg}")
         main()
     except:
