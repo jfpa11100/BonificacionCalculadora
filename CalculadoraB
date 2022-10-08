@@ -7,7 +7,7 @@ class MalIngresoNumeros(IndexError):
 class Terminar(KeyboardInterrupt):
     pass
 
-class NoConvertInt(Exception):
+class NoConvertInt(ValueError):
     pass
 
 class OperacionUnknown(Exception):
