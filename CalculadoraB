@@ -1,16 +1,16 @@
-class miError1(ZeroDivisionError):
+class DivisionPor0(ZeroDivisionError):
     pass
 
-class miError2(Exception):
+class MalIngresoNumeros(IndexError):
     pass
 
-class miError3(Exception):
+class Terminar(KeyboardInterrupt):
     pass
 
-class miError4(Exception):
+class NoConvertInt(Exception):
     pass
 
-class miError5(Exception):
+class OperacionUnknown(Exception):
     def __init__(self, msg):
         self.msg = msg
 
@@ -30,19 +30,20 @@ def main():
                 print(int(op[0]) / int(op[2]))
             elif op == "terminar":
                 break
-            elif op[1] == "**" or op[1] == "^":
-                raise miError5("No se conoce esa operación")
+            else:
+                raise OperacionUnknown("No se conoce esa operación")
 
     except ZeroDivisionError:
-        raise miError1("Paila esa divididida por 0")
+        raise DivisionPor0("Paila esa divididida por 0")
     except IndexError:
-        raise miError2("Falto número(s) por digitar")
+        raise MalIngresoNumeros("Falto número(s) por digitar")
     except KeyboardInterrupt:
-        raise miError3("Escriba 'terminar' preferiblemente ")
+        raise Terminar("Escriba 'terminar' preferiblemente para parar")
     except ValueError:
-        raise miError4("Mal digitación de los numeros")
-    except miError5 as e:
-        print(f"paila -> {e.msg}")
+        raise NoConvertInt("No es un numero")
+    except OperacionUnknown as e:
+        print(f"Paila -> {e.msg}")
+        main()
     except:
         ("Sucedio un error aun no definido")
         main()
